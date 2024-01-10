@@ -15,8 +15,7 @@ def read_holdings(address):
 def update_value(register, value):
     
      key_to_update = 'holding_register_'+str(register)
-     with open("file.yml",'r') as f:
-        print("Updating file..")  
+     with open("file.yml",'r') as f:  
         data = yaml.safe_load(f)
         data_loaded = list(data)
         data[key_to_update] = str(value)
