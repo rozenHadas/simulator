@@ -29,17 +29,17 @@ try:
         serverSlave.start()
         print("Server is online")
         
+       time_check = time.localtime()
         while True:
             register_value = read_holdings(1)
             print("I'm reading from register : {}".format(register_value))
             time.sleep(time_delay)
-            print("Update yaml file ")
-            update_value(1,register_value)
-            print("Writing to holding register")
+   
+        if time.localtime() - time_check >= 1 :
             serverSlave.data_bank.set_holding_registers(20,[register_value*2])
-            time.sleep(1)
-            serverSlave.data_bank.set_holding_registers(1,[44])
-            continue
+            time_check = time.localtime()
+        serverSlave.data_bank.set_holding_registers(1,[44])
+        continue
     
 except Exception as err:
     print(f"Exception: {err}")
